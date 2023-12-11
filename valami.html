@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weboldal</title>
+          
+
+    <script  src="distances.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body onload="initMap()">
+    <header>
+        <h1>Geo térkép</h1>
+    </header>
+    <nav>
+       <!-- <a href="#home">Főoldal</a> -->
+        <a href="csabi.html">Földrajz</a>
+        
+    </nav>
+   <!--
+    <div class="content" id="home">
+        <p><h2>Üdvözöllek a weboldalon</h2></p>
+       
+        <gmp-map center="47.85395050048828,17.284271240234375" zoom="14" map-id="DEMO_MAP_ID">
+            <gmp-advanced-marker position="47.85395050048828,17.284271240234375" title="My location">
+            </gmp-advanced-marker>
+          </gmp-map>
+    </div>
+    -->
+
+
+
+     <div class="content" id="geography">
+        
+        <!-- Ide helyezd el a földrajz tartalmat -->
+        <!--
+            <div id="inputPlace">
+            <input type="text" placeholder="1. pont" id="pInput_1">
+            <input type="text" placeholder="2. pont" id="pInput_2">
+            <button id="setPlace" onclick="setPlace()">Beállít</button>
+        </div>
+    -->
+  
+        
+            <!--The div elements for the map and message -->
+            
+            
+
+            
+           
+        
+            <!--Load the API from the specified URL-->
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw_i3_t0dhJ2RBL3SAd6RpSUWYHa1cSyE&callback=initMap">
+            </script>
+          
+    
+
+    
+    
+  
+  
+    
+
+
+
+    <div class="content" id="stars">
+        <h3>Csillag és égbolt</h3>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+              key: "AIzaSyAU012dHpXmzugBiMwfZ58jmapDvGMLebU",
+              v: "weekly",
+              // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+              // Add other bootstrap parameters as needed, using camel case.
+            });
+          </script>
+          <script type="text/javascript">
+            var latitudeG; var longitudeG;
+            async function initMap2() {
+            // The location of Ajka
+            const position = { lat: 47.1048349671437, lng: 17.549960246813743};
+            // Request needed libraries.
+            //@ts-ignore
+            const { Map } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+            // The map, centered at Ajka
+            map = new Map(document.getElementById("map_canvas"), {
+                zoom: 14,
+                center: position,
+                mapId: "ROADMAP",
+            });
+            
+            // The marker, positioned at Ajka
+            const marker = new AdvancedMarkerElement({
+                map: map,
+                position: position,
+                gmpDraggable: true,
+                title: "Ajka",
+            });
+            google.maps.event.addListener(marker, 'dragend', function(evt){
+                document.getElementById('status').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(4) + ' Current Lng: ' + evt.latLng.lng().toFixed(4) + '</p>';
+                latitudeG = evt.latLng.lat();; longitudeG = evt.latLng.lng();
+            });
+
+            google.maps.event.addListener(marker, 'dragstart', function(evt){
+                document.getElementById('status').innerHTML = '<p>Currently dragging marker...</p>';
+            });
+            }
+            
+            initMap2();
+        </script>
+        <script src="astronomy.js"></script>
+        <!-- Ide helyezd el a csillagokról szóló tartalmat -->
+        <pre id="response"></pre>
+        <form>
+            <label for="astronomy">Válassz égitestet:</label>
+            <select id="astronomy" name="astronomy" onchange="addStars()">
+              <option value="Sun">Nap</option>
+              <option value="Moon">Hold</option>
+              <option value="Mercury">Merkúr</option>
+              <option value="Venus">Vénusz</option>
+              <option value="Earth">Föld</option>
+              <option value="Mars">Mars</option>
+              <option value="Jupiter">Jupiter</option>
+              <option value="Saturn">Szaturnusz</option>
+              <option value="Uranus">Uránusz</option>
+              <option value="Neptune">Neptunusz</option>
+              <option value="Pluto">Plútó</option>
+              <option value="Star">Csillag</option>
+            </select><br>
+            <p></p>
+            <div id="map_canvas" style="width:1000; height: 600"></div>
+            <p id="status"></p>
+            <p></p>
+            <label for="quantity">Tengerszint feletti magasság:</label>
+            <input type="number" id="elevation" name="elevation" value="0"><br>
+            <p id="csillagok"></p>
+        </form>
+        <button onclick="DataFetching()">Lekérés</button><br>
+        <p></p>
+        <canvas id="Astronomy1" width="400" height="400" style="border:1px solid grey"></canvas><br>
+        <canvas id="Astronomy2" width="400" height="400" style="border:1px solid grey"></canvas><br>
+        <p id="lathatoe"></p>
+    </div>
+    <!-- A naprendszer tagjait AstronomyAPI-ról, a csillagokat az API Ninja Stars API-ról szedtem le-->
+    
+</body>
+</html>
+ 
