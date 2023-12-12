@@ -334,3 +334,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 */
+
+//funkció az előzmény mentésére
+function saveCoordinates(){
+    console.log(getGlobalUser());
+    //Ellenőrzés hogy megvan e a 2 marker és be van e jelentkezve
+    if (markers.length === 2 && getGlobalUser()!="null") {
+        // Lekérdezze a két marker közötti magasságokat
+        var lat1 = markers[0].getPosition().lat();
+        var lon1 = markers[0].getPosition().lng();
+        var lat2 = markers[1].getPosition().lat();
+        var lon2 = markers[1].getPosition().lng();
+        
+
+        saveMap(lat1,lon1,lat2,lon2,getGlobalUser());
+        
+    } else if(getGlobalUser()=="null") {
+        console.log('Kérem jelentkezzen be a mentéshez!');
+    }else{
+        console.log('Kérem helyezzen el két markert a térképen!');
+    }
+}

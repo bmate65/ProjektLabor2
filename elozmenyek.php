@@ -26,11 +26,11 @@
         // Output data of each row
         while($row = $result->fetch_assoc()) {
             
-            echo json_encode('<tr onclick="toMap('.$row["ID"].')"><td>' . $row["pont1"]. '</td><td>' . $row["pont2"]. '</td><td>' . $row["user"].'</td></tr>');
+            echo ('<tr><td>' . $row["pont1"]. '</td><td>' . $row["pont1_2"]. '</td><td>' . $row["pont2"]. '</td><td>' . $row["pont2_2"]. '</td><td><button onclick="deleteFromHistoryByID('.$row["ID"].')">Törlés</button></td><td><button onclick="toMap('.$row["ID"].')">Megnyitás</button></td></tr>');
             
         }
     } else {
-        echo "Nincs semmi";
+        echo "</table>Nincsenek előzmények!";
         
     }
 

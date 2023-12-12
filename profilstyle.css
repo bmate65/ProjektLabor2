@@ -4,7 +4,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    
     }
     header {
     background-color: #222222;
@@ -46,8 +46,34 @@ nav button:hover {
     justify-content: center;
     align-items: center;
     height: 50vh; /* Adjust this value to set the desired vertical alignment */
+    overflow-y: auto;
 }
 .cont1{
     font-family: Arial, sans-serif;
     text-align: center;
 }
+.eredmeny{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 80%;
+    
+}
+
+#map {
+    
+    height: 400px;
+    width: 800px;
+    padding: 15px, 0px, 0px, 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+   }
+   
+   .mapcontent {
+    font-weight: bold; 
+    border: 2px solid #000; 
+    padding: 5px;
+    text-align: center;
+    
+   }
+   

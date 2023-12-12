@@ -9,6 +9,7 @@
     <script src="Shared.js"></script>
     <script src="script.js"></script>
     <script src="userPanel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
 </head>
 <body onload="profilLoad()">
@@ -26,11 +27,14 @@
         <div id='result' class="eredmeny">
         </div>
     </div>
+    <br>
+    <div class="map" id="map"></div>
+    <br>
+    <div class="graph">
+        <div id="saveAnswer" ></div>
+    </div>
 
-
-
-
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2LTjOeJaA2UhtfnudUANNtE_C9N4l0ec&callback=initMap" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 </body>
 </html>

@@ -7,3 +7,8 @@ function setGlobalUser(){
 function setGlobalUsernull(){
     localStorage.setItem('UserGlobal',null);
 }
+
+function getGlobalUser()
+{
+return localStorage.getItem('UserGlobal')
+}

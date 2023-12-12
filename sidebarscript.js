@@ -13,10 +13,15 @@ var password;
 
 
 function sidebarinit(){
-console.log(document.getElementById("sidebar"));
+    if(getGlobalUser()!="null"){
+        userPanelInit();
+    }else{
+        console.log(document.getElementById("sidebar"));
 var content = "<h1 class='menu'>Menü</h1><a  class='sidebar-btn' id='login' onclick=login()>Bejelentkezés</a>";
 content+="<a  class='sidebar-btn' id='regist' onclick='regist()'>Regisztráció</a><a class='sidebar-btn' href='valami.html'>Astronomy</a>";
 document.getElementById("sidebar").innerHTML = content;
+    }
+
 }
 
 function back(){
