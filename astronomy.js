@@ -4,6 +4,7 @@
     var csillagokAlekerdezeshez;
 
     function DataFetching(){
+        var currenthour= new Date().getHours();
         if(document.getElementById("astronomy").value != "Star"){
         const applicationID = '9704eed6-2ab3-46d1-a5d0-f90b3fd8680b'; //AstronomyAPI ID (felhasználókód)
         const applicationSecret = '3af26708fb0d54cbbeb7e661440de08cca2e5bca42a09eaec587b9dca01b8068c982fdd6fd413236f395fb3101ab2d78de0c709a044312e06428d90ae4a658a61d672f2ab911c42f8671b23fa059be89e7a9c423935337aca13cb015cca117931c69bf94e93c57748f085df80b18fb2a';
@@ -12,7 +13,11 @@
 
         var nameValue = document.getElementById("astronomy").value;
         const t = new Date();
-        var timeC = t.toLocaleTimeString();
+        if(currenthour<10){
+            var timeC='0';
+        }
+        else var timeC='';
+         timeC+= t.toLocaleTimeString();
         timeC = timeC.replaceAll(":","%3A");
         let d = new Date();
         let dateC = d.toISOString().split('T')[0];
