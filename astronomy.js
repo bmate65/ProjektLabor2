@@ -137,8 +137,8 @@
                 Declination2[i] = Number(Declination1[(i*2)].slice(0,Declination1[(i*2)].length -1));
                 }
             var latitudeStar = Declination2[0] + Declination2[1]/60 + Declination2[2]/3600;
-            var longitudePerson= longitudeG;
-            var latitudePerson= latitudeG;
+            let latitudePerson = latitudeG;
+            let longitudePerson = longitudeG;
             var latitudeDifference = latitudeStar - latitudePerson;
             var longitudeDifference = longitudeStar - longitudePerson;
             latitudeDifference = latitudeDifference * Math.PI/180;
