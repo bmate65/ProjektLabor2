@@ -10,6 +10,8 @@ var elevationData = [];
 var elevationChart;
 
 
+
+
 function calculateVisibility(heightAboveGround, distance){
     const earthRadius = 6371; // Föld sugara kilométerben
 
@@ -27,6 +29,8 @@ function checkVisibility(lat1, lon1, lat2, lon2){
     return distance <= maxDistanceForVisibility;
 
 }
+
+
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // földi sugár kilométerben
     const dLat = toRadians(lat2 - lat1);
@@ -78,19 +82,24 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
         var lon1 = markers[0].getPosition().lng();
         var lat2 = markers[1].getPosition().lat();
         var lon2 = markers[1].getPosition().lng();
-      
+    
         var distance = calculateDistance(lat1, lon1, lat2, lon2);
         distance = distance.toFixed(2);
-        resultDiv.innerHTML = 'Távolság a két pont között: ' + distance + ' km';
-        
+    
+        // A-pont koordinátái
+        var pointACoordinates = '1.Marker koordinátái: (' + lat1 + ', ' + lon1 + ')';
+        // B-pont koordinátái
+        var pointBCoordinates = '2.Marker koordinátái: (' + lat2 + ', ' + lon2 + ')';
+    
+        resultDiv.innerHTML = 'Távolság a két pont között: ' + distance + ' km<br>' +
+                              pointACoordinates +' ----- '+ pointBCoordinates;
+    
         var isVisible = checkVisibility(lat1, lon1, lat2, lon2);
         if (isVisible) {
-            resultDiv.innerHTML += '<br>A pontok láthatók egymástól.';
+            resultDiv.innerHTML += '<br>A-pontból látható B-pont.';
         } else {
-            resultDiv.innerHTML += '<br>A pontok nem láthatók egymástól.';
+            resultDiv.innerHTML += '<br>A-pontból nem látható B-pont.';
         }
-
-
         if(line){
             line.setMap(null);
         }

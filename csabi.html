@@ -21,15 +21,18 @@
 </header>
 <div class="sidebar" id="sidebar" ></div>
 <br>
-  
+
 
 
   <div id="map"></div>
   <br>
   
-
+  
   <div class="mapcontent" id="result"></div>
-  <button id="elevationButton" onclick="requestElevation()">Távolság közti pontok magassága grafikonon</button> 
+  <br>
+  <div id="elevationButton">
+    <button class="elevationButton" onclick="requestElevation()">Távolság közti pontok magassága grafikonon</button>
+   </div>
   
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2LTjOeJaA2UhtfnudUANNtE_C9N4l0ec&callback=initMap" async defer></script>
